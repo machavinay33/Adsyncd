@@ -95,7 +95,7 @@ p { color:var(--muted); line-height:1.7; }
 .engine-layout { display:grid; grid-template-columns:.74fr 1.1fr; gap:95px; align-items:center; }
 .engine-copy p:not(.eyebrow) { max-width:400px; }
 .text-link,.card-link { display:inline-flex; align-items:center; gap:9px; padding:0; color:var(--cyan); background:transparent; cursor:pointer; font:500 11px/1 'DM Mono',monospace; }
-.engine-visual { position:relative; width:min(100%, 570px); aspect-ratio:1; margin-left:auto; }
+.engine-visual { position:relative; width:min(100%, 570px); aspect-ratio:1; margin-left:auto; overflow:hidden; border:1px solid rgba(53,217,233,.16); background-size:cover; background-position:center; box-shadow:0 24px 80px rgba(0,0,0,.22); }
 .orbit { position:absolute; border:1px solid rgba(53,217,233,.34); border-radius:50%; inset:13%; }
 .orbit-one { animation:orbit 24s linear infinite; border-left-color:var(--blue); border-right-color:var(--blue); }
 .orbit-two { inset:25%; border-color:rgba(47,123,255,.4); border-top-color:var(--cyan); animation:orbit-reverse 18s linear infinite; }
