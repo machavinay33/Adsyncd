@@ -19,7 +19,7 @@ The production build is:
 npm run build
 ```
 
-The scaffold's Vite build emits the frontend into `dist`; the included Netlify configuration publishes that directory and provides an SPA fallback.
+The scaffold's Vite build emits the frontend into `dist/public`; the included Netlify configuration publishes that directory and provides an SPA fallback.
 
 ## Supabase setup
 
@@ -39,7 +39,7 @@ The browser only uses the Supabase anonymous key. Never place a service-role key
 
 ## Netlify deployment
 
-The repository contains [`netlify.toml`](./netlify.toml), which sets Node 20, runs `npm run build`, publishes `dist`, and routes all paths to `/index.html` for SPA navigation. In Netlify, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under Site configuration → Environment variables before deploying.
+The repository contains [`netlify.toml`](./netlify.toml), which sets Node 20, runs `npm run build`, publishes `dist/public`, and routes all paths to `/index.html` for SPA navigation. In Netlify, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under Site configuration → Environment variables before deploying.
 
 ## Content and proof policy
 
