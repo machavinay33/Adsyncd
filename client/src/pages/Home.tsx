@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const logoUrl = "/manus-storage/adsyncd-logo_0bda3872.png";
+const logoUrl = "/adsyncd-logo.png";
 const heroTexture = "/manus-storage/adsyncd-hero-signal_b7a0bbfd.png";
 const dashboardArt = "/manus-storage/adsyncd-dashboard-art_576f355a.png";
 const sectionTexture = "/manus-storage/adsyncd-section-texture_bba95834.png";
