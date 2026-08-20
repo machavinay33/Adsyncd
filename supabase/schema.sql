@@ -21,4 +21,10 @@ create policy "Allow public growth audit inserts"
   to anon, authenticated
   with check (true);
 
--- Intentionally no SELECT policy is created for anon. Lead data remains private.
+drop policy if exists "Allow authenticated growth audit reads" on public.growth_audits;
+create policy "Allow authenticated growth audit reads"
+  on public.growth_audits for select
+  to authenticated
+  using (true);
+
+-- Anonymous visitors can insert, but only authenticated users can read lead data.
