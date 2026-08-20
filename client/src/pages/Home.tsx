@@ -27,11 +27,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const logoUrl = "/adsyncd-logo.png";
-const heroTexture = "/manus-storage/adsyncd-hero-network_8e6b866a.png";
-const dashboardArt = "/manus-storage/adsyncd-dashboard-art_576f355a.png";
-const growthSystemArt = "/manus-storage/adsyncd-growth-system_aeff9c43.png";
-const conversionArt = "/manus-storage/adsyncd-conversion-editorial_64d68477.png";
-const sectionTexture = "/manus-storage/adsyncd-section-texture_bba95834.png";
+const heroTexture = "/adsyncd-hero-network.png";
+const dashboardArt = "/adsyncd-dashboard-art.png";
+const growthSystemArt = "/adsyncd-growth-system.png";
+const conversionArt = "/adsyncd-conversion-editorial.png";
+const sectionTexture = "/adsyncd-section-texture.png";
 
 const services = [
   { id: "01", stage: "ACQUIRE", title: "Paid Growth", icon: MousePointer2, copy: "Bring the right people into your funnel with performance campaigns built around profitable customer acquisition.", items: ["Meta + Instagram Ads", "Google Ads", "Retargeting", "Creative testing", "Audience strategy", "Budget optimization"] },
