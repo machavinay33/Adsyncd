@@ -1,5 +1,5 @@
 /* AdSyncd Signal Console: Swiss editorial systems design, dark navy surfaces, electric-blue signals, DM Mono labels. */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import {
   ArrowDownRight,
@@ -47,7 +47,18 @@ const caseStudies = [
 ];
 
 function Reveal({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
-  return <div className={`reveal ${className}`} style={style}>{children}</div>;
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") { setVisible(true); return; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  return <div ref={ref} className={`reveal ${visible ? "is-visible" : ""} ${className}`} style={style}>{children}</div>;
 }
 
 function Logo({ compact = false }: { compact?: boolean }) {
@@ -110,7 +121,7 @@ export default function Home() {
 
     <main>
       <section className="hero section-grid" style={{ backgroundImage: `linear-gradient(90deg, rgba(4,8,18,.98) 0%, rgba(4,8,18,.82) 46%, rgba(4,8,18,.35) 100%), url(${heroTexture})` }}>
-        <div className="container hero-layout"><Reveal className="hero-copy"><p className="eyebrow signal"><span className="pulse-dot" /> ADSYNCD / GROWTH SYSTEMS</p><h1>More customers.<br /><span>More revenue.</span><br />Same ad spend.</h1><p className="hero-lede">AdSyncd connects paid acquisition, conversion optimization and retention into one measurable growth system.</p><div className="hero-actions"><button className="button button-primary" onClick={() => setAuditOpen(true)}>Get Your Growth Audit <ArrowUpRight size={17} /></button><button className="button button-ghost" onClick={() => scrollTo("engine")}>See how it works <ArrowDownRight size={16} /></button></div><div className="system-rail"><div><span>01</span> ACQUIRE <small>Paid Ads</small></div><i>→</i><div><span>02</span> CONVERT <small>CRO</small></div><i>→</i><div><span>03</span> RETAIN <small>Lifecycle</small></div><i>→</i><div><span>04</span> SCALE <small>Analytics</small></div></div></Reveal><Reveal className="hero-dashboard"><div className="dashboard-heading"><span>LIVE MODEL / EXAMPLE ONLY</span><span className="green-label"><span className="pulse-dot green" /> +42.8%</span></div><div className="dashboard-card"><div className="dash-top"><div><span className="dash-label">Revenue signal</span><strong>₹18.60L</strong><small>illustrative monthly model</small></div><TrendingUp className="trend-icon" /></div><div className="chart-wrap"><div className="chart-grid" /><svg viewBox="0 0 480 170" role="img" aria-label="Illustrative rising revenue chart"><path d="M0 150 C35 140 45 120 78 128 S120 95 152 111 S184 104 210 74 S255 94 280 61 S324 74 354 39 S398 56 430 20 S460 24 480 8" fill="none" stroke="#35d9e9" strokeWidth="3" /><path d="M0 150 C35 140 45 120 78 128 S120 95 152 111 S184 104 210 74 S255 94 280 61 S324 74 354 39 S398 56 430 20 S460 24 480 8 L480 170 L0 170Z" fill="url(#fill)" opacity=".18" /><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#35d9e9" /><stop offset="1" stopColor="#2f7bff" stopOpacity="0" /></linearGradient></defs></svg></div><div className="dash-metrics"><div><span>Ad spend</span><b>₹2.40L</b></div><div><span>Qualified leads</span><b>684</b></div><div><span>Customers</span><b>127</b></div><div><span>Modeled ROAS</span><b className="green-text">7.75×</b></div></div><div className="dashboard-art" style={{ backgroundImage: `url(${dashboardArt})` }} /></div><p className="dash-disclaimer">Illustrative interface. Real performance data supplied during audit.</p></Reveal></div>
+        <div className="container hero-layout"><Reveal className="hero-copy"><p className="eyebrow signal"><span className="pulse-dot" /> ADSYNCD / GROWTH SYSTEMS</p><h1>More customers.<br /><span>More revenue.</span><br />Same ad spend.</h1><p className="hero-lede">AdSyncd connects paid acquisition, conversion optimization and retention into one measurable growth system.</p><div className="hero-actions"><button className="button button-primary" onClick={() => setAuditOpen(true)}>Get Your Growth Audit <ArrowUpRight size={17} /></button><button className="button button-ghost" onClick={() => scrollTo("engine")}>See how it works <ArrowDownRight size={16} /></button></div><div className="system-rail"><div><span>01</span> ACQUIRE <small>Paid Ads</small></div><i>→</i><div><span>02</span> CONVERT <small>CRO</small></div><i>→</i><div><span>03</span> RETAIN <small>Lifecycle</small></div><i>→</i><div><span>04</span> SCALE <small>Analytics</small></div></div></Reveal><Reveal className="hero-dashboard"><div className="dashboard-heading"><span>LIVE MODEL / EXAMPLE ONLY</span><span className="green-label"><span className="pulse-dot green" /> +42.8%</span></div><div className="dashboard-card"><div className="dash-top"><div><span className="dash-label">Revenue signal</span><strong>₹18.60L</strong><small>illustrative monthly model</small></div><TrendingUp className="trend-icon" /></div><div className="chart-wrap"><div className="chart-grid" /><svg viewBox="0 0 480 170" role="img" aria-label="Illustrative rising revenue chart"><path className="chart-line" d="M0 150 C35 140 45 120 78 128 S120 95 152 111 S184 104 210 74 S255 94 280 61 S324 74 354 39 S398 56 430 20 S460 24 480 8" fill="none" stroke="#35d9e9" strokeWidth="3" /><path d="M0 150 C35 140 45 120 78 128 S120 95 152 111 S184 104 210 74 S255 94 280 61 S324 74 354 39 S398 56 430 20 S460 24 480 8 L480 170 L0 170Z" fill="url(#fill)" opacity=".18" /><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#35d9e9" /><stop offset="1" stopColor="#2f7bff" stopOpacity="0" /></linearGradient></defs></svg></div><div className="dash-metrics"><div><span>Ad spend</span><b>₹2.40L</b></div><div><span>Qualified leads</span><b>684</b></div><div><span>Customers</span><b>127</b></div><div><span>Modeled ROAS</span><b className="green-text">7.75×</b></div></div><div className="dashboard-art" style={{ backgroundImage: `url(${dashboardArt})` }} /></div><p className="dash-disclaimer">Illustrative interface. Real performance data supplied during audit.</p></Reveal></div>
       </section>
 
       <section className="proof-strip"><div className="container proof-grid"><div><span>PROOF / DATA PENDING</span><strong>₹X Cr+</strong><small>Revenue generated</small></div><div><span>PROOF / DATA PENDING</span><strong>X+</strong><small>Brands served</small></div><div><span>PROOF / DATA PENDING</span><strong>X.X×</strong><small>Average ROAS</small></div><div><span>PROOF / DATA PENDING</span><strong>X%</strong><small>Conversion lift</small></div></div></section>
